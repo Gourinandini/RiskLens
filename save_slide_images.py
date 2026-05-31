@@ -334,4 +334,106 @@ for bar in bars:
 plt.savefig("documents/slide7.png", dpi=100, facecolor=BG_COLOR)
 plt.close()
 
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# SLIDE 8: Chatbot Screen Mockup (RiskLens Copilot)
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+fig, ax = plt.subplots(figsize=(11, 8.5))
+apply_slide_theme(fig, ax, "RiskLens Copilot Chat Interface")
+
+# Sidebar
+draw_card(ax, 4, 12, 22, 70, "Sidebar Panel", ACCENT_CYAN)
+ax.text(6, 68, "RiskLens v2.0", fontsize=10, color=ACCENT_CYAN, fontweight='bold')
+ax.text(6, 65, "Enterprise Edition", fontsize=7, color='#64748B')
+ax.text(6, 52, "ROC-AUC: 0.7683", fontsize=8, color=TITLE_COLOR, fontweight='bold')
+ax.text(6, 45, "PR-AUC:  0.2591", fontsize=8, color=TITLE_COLOR, fontweight='bold')
+ax.text(6, 38, "F1 Score: 0.3202", fontsize=8, color=TITLE_COLOR, fontweight='bold')
+ax.text(6, 25, "● ML Model: Loaded", fontsize=8, color=ACCENT_GREEN)
+ax.text(6, 20, "● Database: Connected", fontsize=8, color=ACCENT_GREEN)
+ax.text(6, 15, "● Copilot: Connected", fontsize=8, color=ACCENT_GREEN)
+
+# Main Workspace
+draw_card(ax, 29, 12, 66, 70, "Interactive Workspace Tabs", ACCENT_CYAN)
+ax.text(31, 74, "📊 EDA Dashboard  |  🔍 Risk Predictor  |  🧠 Explainability  |  📋 Decision Rules  |  💬 RiskLens Copilot", 
+        fontsize=8.5, color='#475569', fontfamily='sans-serif')
+# Draw Cyan underline for the active tab (Copilot)
+ax.plot([78, 92], [72, 72], color=ACCENT_CYAN, linewidth=2)
+
+# User Chat Bubble
+draw_card(ax, 32, 53, 60, 14, "", ACCENT_CYAN)
+ax.text(34, 63, "User Question:", fontsize=8, color=ACCENT_CYAN, fontweight='bold')
+ax.text(34, 60, '"What percentage of pensioners defaulted, and what is their average income?"', 
+        fontsize=9.5, color=TITLE_COLOR, fontweight='medium', fontstyle='italic')
+        
+# Bot Chat Bubble
+draw_card(ax, 32, 16, 60, 33, "", ACCENT_GREEN)
+ax.text(34, 45, "RiskLens Copilot Response:", fontsize=8, color=ACCENT_GREEN, fontweight='bold')
+
+bot_explanation = "Based on SQLite database analysis, Pensioners have a default rate of 5.14%."
+ax.text(34, 42, bot_explanation, fontsize=8.5, color=TITLE_COLOR)
+
+# SQL expander mockup
+draw_card(ax, 34, 31, 56, 7, "", '#1F2937')
+ax.text(36, 35, "Executed SQL:", fontsize=7, color='#64748B')
+ax.text(36, 33, "SELECT AVG(TARGET)*100, AVG(AMT_INCOME_TOTAL) FROM applications WHERE NAME_INCOME_TYPE = 'Pensioner'", 
+        fontsize=7, color=ACCENT_CYAN, fontfamily='monospace')
+        
+# Result table mockup
+ax.text(34, 26, "QueryResult Table:", fontsize=8, color='#64748B', fontweight='bold')
+ax.text(34, 22, "NAME_INCOME_TYPE    |  DEFAULT_RATE (%)  |  AVG_INCOME", fontsize=7.5, color=TITLE_COLOR, fontfamily='monospace')
+ax.plot([34, 88], [20.5, 20.5], color='#1F2937', linewidth=0.8)
+ax.text(34, 18, "Pensioner           |  5.14%             |  ₹1.37L", fontsize=7.5, color=TEXT_COLOR, fontfamily='monospace')
+
+plt.savefig("documents/slide8.png", dpi=100, facecolor=BG_COLOR)
+plt.close()
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# SLIDE 9: Decision Rules Screen Mockup (Rules Explorer)
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+fig, ax = plt.subplots(figsize=(11, 8.5))
+apply_slide_theme(fig, ax, "Decision Rules Explorer")
+
+# Sidebar
+draw_card(ax, 4, 12, 22, 70, "Sidebar Panel", ACCENT_CYAN)
+ax.text(6, 68, "RiskLens v2.0", fontsize=10, color=ACCENT_CYAN, fontweight='bold')
+ax.text(6, 65, "Enterprise Edition", fontsize=7, color='#64748B')
+ax.text(6, 52, "ROC-AUC: 0.7683", fontsize=8, color=TITLE_COLOR, fontweight='bold')
+ax.text(6, 45, "PR-AUC:  0.2591", fontsize=8, color=TITLE_COLOR, fontweight='bold')
+ax.text(6, 38, "F1 Score: 0.3202", fontsize=8, color=TITLE_COLOR, fontweight='bold')
+ax.text(6, 25, "● ML Model: Loaded", fontsize=8, color=ACCENT_GREEN)
+ax.text(6, 20, "● Database: Connected", fontsize=8, color=ACCENT_GREEN)
+ax.text(6, 15, "● Copilot: Connected", fontsize=8, color=ACCENT_GREEN)
+
+# Main Workspace
+draw_card(ax, 29, 12, 66, 70, "Interactive Workspace Tabs", ACCENT_CYAN)
+ax.text(31, 74, "📊 EDA Dashboard  |  🔍 Risk Predictor  |  🧠 Explainability  |  📋 Decision Rules  |  💬 RiskLens Copilot", 
+        fontsize=8.5, color='#475569', fontfamily='sans-serif')
+# Draw Cyan underline for the active tab (Decision Rules)
+ax.plot([60, 74], [72, 72], color=ACCENT_CYAN, linewidth=2)
+
+# Filter Panel Mockup
+draw_card(ax, 32, 54, 60, 13, "Rules Filtering Configuration", ACCENT_CYAN)
+ax.text(34, 60, "Filter by Risk Band: [Medium]   |   Min Support: [2.00%]   |   Sort by: [Confidence]", fontsize=8, color=TEXT_COLOR)
+
+# Rule Card 1 (Medium Risk)
+draw_card(ax, 32, 34, 60, 16, "Rule #5 (Risk Band: Medium)", ACCENT_PURPLE)
+rule5_text = (
+    "IF External Credit Score 2 <= 0.4305\n"
+    "AND External Credit Score 3 > 0.3100\n"
+    "AND Employment Duration > 4.5 years\n"
+    "--> PREDICTED BAND: Medium Risk (Confidence: 58.9%, Support: 4.4%)"
+)
+draw_wrapped_text(ax, 34, 43, rule5_text, width_chars=70, fontsize=7.5, color=TEXT_COLOR)
+
+# Rule Card 2 (High Risk)
+draw_card(ax, 32, 16, 60, 14, "Rule #2 (Risk Band: High)", ACCENT_RED)
+rule2_text = (
+    "IF External Credit Score 2 <= 0.3200\n"
+    "AND External Credit Score 3 <= 0.2800\n"
+    "--> PREDICTED BAND: High Risk (Confidence: 78.4%, Support: 3.1%)"
+)
+draw_wrapped_text(ax, 34, 23, rule2_text, width_chars=70, fontsize=7.5, color=TEXT_COLOR)
+
+plt.savefig("documents/slide9.png", dpi=100, facecolor=BG_COLOR)
+plt.close()
+
 print("Slides successfully rendered and saved to documents/")
