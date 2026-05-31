@@ -1,0 +1,82 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# RiskLens Credit Risk Intelligence Platform
+# Docker Compose – local development & single-host deployment
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+
+  # ── Main Streamlit Application ────────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime          # use the lean runtime stage
+    image: risklens/credit-risk-platform:latest
+    container_name: credit_risk_platform
+
+    # Port mapping: host:container
+    ports:
+      - "${APP_PORT:-8501}:8501"
+
+    # Bind-mount heavy artefacts so they persist outside the container and are
+    # never baked into the image (keeps image small & secrets-safe)
+    volumes:
+      - ./data:/app/data:ro          # dataset CSVs  (read-only inside container)
+      - ./models:/app/models         # trained model + metrics files
+      - ./sql:/app/sql               # SQLite database file
+      - app_logs:/app/logs           # structured log output
+
+    # Load secrets & config from .env (never committed to git)
+    env_file:
+      - .env
+
+    # Hard-coded safe defaults (override anything not in .env)
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONPATH=/app
+      - DATA_PATH=/app/data
+      - DB_PATH=/app/sql/credit_risk.db
+      - MODEL_PATH=/app/models/lgbm_model.joblib
+
+    # Resource guardrails – prevents OOM on host during heavy SHAP/LightGBM ops
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 4G
+        reservations:
+          cpus: "0.5"
+          memory: 1G
+
+    # Restart policy
+    restart: unless-stopped
+
+    # Health: wait until Streamlit reports healthy before marking service ready
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 90s
+
+    # Structured logging
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "5"
+
+    # Human-readable service label metadata
+    labels:
+      - "com.neostats.service=credit-risk-platform"
+      - "com.neostats.version=1.0.0"
+      - "com.neostats.description=AI-Powered Credit Risk Intelligence Dashboard"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Named Volumes
+# ─────────────────────────────────────────────────────────────────────────────
+volumes:
+  app_logs:
+    driver: local
