@@ -972,15 +972,7 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
-    st.markdown("""
-    <div style="padding:12px 16px;">
-        <a href="https://github.com/Gourinandini/AI-Powered-Credit-Risk-Intelligence-Platform"
-           style="font-size:0.75rem;color:#475569;text-decoration:none;display:flex;align-items:center;gap:6px;">
-           <span>📁</span> View on GitHub
-        </a>
-    </div>
-    """, unsafe_allow_html=True)
+
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
