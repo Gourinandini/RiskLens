@@ -1,0 +1,56 @@
+# ─── Large Data Files (bind-mounted at runtime, not baked into image) ─────────
+data/
+models/
+sql/*.db
+
+# ─── Python cache ──────────────────────────────────────────────────────────────
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ─── Virtual environments ──────────────────────────────────────────────────────
+venv/
+.venv/
+env/
+.env/
+
+# ─── Secrets (never bake credentials into the image) ──────────────────────────
+.env
+*.key
+*.pem
+
+# ─── Git ───────────────────────────────────────────────────────────────────────
+.git/
+.gitignore
+.gitattributes
+
+# ─── IDE / Editor ──────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ─── OS artefacts ──────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Test / CI artefacts ───────────────────────────────────────────────────────
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+logs/
+
+# ─── Documentation / notebooks ────────────────────────────────────────────────
+docs/
+*.ipynb
+*.md

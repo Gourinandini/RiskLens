@@ -1,0 +1,41 @@
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Dataset (large files — download from Kaggle separately)
+/data/
+
+# Trained model artifacts (regenerate via python -m src.ml.train)
+/models/
+
+# Secrets
+.env
+
+# SQLite database (auto-seeded on first run)
+*.db
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Compiled / binary artifacts
+*.joblib
+*.pkl
+*.egg-info/
+dist/
+build/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
