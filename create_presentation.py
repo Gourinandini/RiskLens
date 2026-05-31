@@ -125,30 +125,28 @@ with PdfPages(pdf_path) as pdf:
     # Column 1: The Problem
     draw_card(ax, 5, 20, 42, 60, "The Credit Risk Challenge", ACCENT_RED)
     problem_text = (
-        "• High Default Exposure:\n"
-        "  Financial institutions face heavy losses from unpaid loans.\n\n"
-        "• Opposing Objectives:\n"
-        "  Underwriters need accurate predictions, but legacy models lack granular resolution.\n\n"
-        "• Black-Box Compliancy Issues:\n"
-        "  Modern ML (e.g., LightGBM) yields high performance but remains unexplainable, failing regulatory audits (like SR 11-7).\n\n"
-        "• Data Inaccessibility:\n"
-        "  Risk managers struggle to explore portfolio metrics without writing complex SQL queries."
+        "• High Default Losses:\n"
+        "  Unpaid loans drive heavy financial exposure.\n\n"
+        "• Black-Box ML Models:\n"
+        "  Accurate models lack explainability, failing regulatory audits (e.g., SR 11-7).\n\n"
+        "• Complex Data Access:\n"
+        "  Risk teams cannot explore portfolio metrics without technical SQL knowledge."
     )
-    draw_wrapped_text(ax, 7, 72, problem_text, width_chars=48, fontsize=8.5)
+    draw_wrapped_text(ax, 7, 72, problem_text, width_chars=48, fontsize=9)
     
     # Column 2: The Solution
     draw_card(ax, 51, 20, 42, 60, "The RiskLens Core Solution", ACCENT_GREEN)
     solution_text = (
-        "✔ Calibrated Risk Predictor:\n"
-        "  Real-time default probability scoring using optimized thresholds.\n\n"
-        "✔ Regulatory Auditability via Rules:\n"
-        "  Post-hoc surrogate decision tree maps complex predictions into human-readable if/then decision rules.\n\n"
-        "✔ Explainability at Scale:\n"
-        "  Global & local feature attributions using SHAP explainers.\n\n"
-        "✔ RiskLens Copilot (NL-to-SQL):\n"
-        "  Allows business teams to query SQLite portfolio records in natural language without technical knowledge."
+        "✔ Accurate Scoring:\n"
+        "  Real-time default risk prediction using optimized threshold tuning.\n\n"
+        "✔ Human-Readable Rules:\n"
+        "  Surrogate decision trees convert black-box predictions into transparent rules.\n\n"
+        "✔ Global & Local Explainability:\n"
+        "  SHAP integration provides instant feature attribution for compliance.\n\n"
+        "✔ AI Copilot Agent:\n"
+        "  Conversational interface translates natural language queries into instant SQL."
     )
-    draw_wrapped_text(ax, 53, 72, solution_text, width_chars=48, fontsize=8.5)
+    draw_wrapped_text(ax, 53, 72, solution_text, width_chars=48, fontsize=9)
             
     pdf.savefig(fig, facecolor=BG_COLOR)
     plt.close()
@@ -161,16 +159,16 @@ with PdfPages(pdf_path) as pdf:
     
     # Draw Architecture flow boxes
     # Stage 1
-    draw_card(ax, 4, 58, 20, 22, "1. Ingestion", ACCENT_PURPLE)
-    draw_wrapped_text(ax, 6, 73, "Kaggle CSV Ingest\n• 307k applicants\n• 122 raw features", width_chars=22, fontsize=8)
+    draw_card(ax, 4, 58, 20, 22, "1. Ingest", ACCENT_PURPLE)
+    draw_wrapped_text(ax, 6, 73, "• Kaggle Application CSV\n• 307k Applicants\n• 122 Features", width_chars=22, fontsize=8)
     
     # Arrow 1->2
     ax.annotate("", xy=(29, 70), xytext=(25, 70),
                 arrowprops=dict(arrowstyle="->", color=ACCENT_CYAN, lw=2))
     
     # Stage 2
-    draw_card(ax, 30, 58, 20, 22, "2. Preprocessing", ACCENT_PURPLE)
-    draw_wrapped_text(ax, 32, 73, "DataPreprocessor\n• Anomaly fix\n• Feature engineering\n• Median imputation\n• OHE Encoding", width_chars=22, fontsize=7.5)
+    draw_card(ax, 30, 58, 20, 22, "2. Preprocess", ACCENT_PURPLE)
+    draw_wrapped_text(ax, 32, 73, "• Outlier correction\n• Feature engineering\n• Median imputation\n• One-Hot encoding", width_chars=22, fontsize=8)
     
     # Arrow 2->3
     ax.annotate("", xy=(55, 70), xytext=(51, 70),
@@ -178,7 +176,7 @@ with PdfPages(pdf_path) as pdf:
     
     # Stage 3
     draw_card(ax, 56, 58, 20, 22, "3. ML Training", ACCENT_PURPLE)
-    draw_wrapped_text(ax, 58, 73, "ModelTrainer\n• LightGBM Model\n• Early Stopping (50)\n• scale_pos_weight", width_chars=22, fontsize=8)
+    draw_wrapped_text(ax, 58, 73, "• LightGBM training\n• Early stopping (50)\n• scale_pos_weight", width_chars=22, fontsize=8)
     
     # Arrow 3->4
     ax.annotate("", xy=(81, 70), xytext=(77, 70),
@@ -186,7 +184,7 @@ with PdfPages(pdf_path) as pdf:
                 
     # Stage 4
     draw_card(ax, 82, 58, 14, 22, "4. Artifacts", ACCENT_GREEN)
-    draw_wrapped_text(ax, 84, 73, "• lgbm_model.pkl\n• preprocessor.joblib\n• metrics.json\n• rules.json", width_chars=16, fontsize=7.5)
+    draw_wrapped_text(ax, 84, 73, "• Model file\n• Pipeline joblib\n• Metric JSONs\n• Decision rules", width_chars=16, fontsize=8)
 
     # Down Arrows from Stage 4 to Runtime
     ax.annotate("", xy=(40, 48), xytext=(40, 58),
@@ -196,11 +194,11 @@ with PdfPages(pdf_path) as pdf:
                 
     # Runtime Stage 1: UI Dashboard
     draw_card(ax, 10, 18, 36, 26, "Runtime: Streamlit Front-End", ACCENT_CYAN)
-    draw_wrapped_text(ax, 12, 37, "5-Tab Business Interface:\n• Portfolio Analytics (EDA)\n• Local Risk Predictor + SHAP Bar Chart\n• Model Transparency & Metrics Radar\n• Business Rule Search & Filters", width_chars=40, fontsize=8)
+    draw_wrapped_text(ax, 12, 37, "Interactive Business Dashboard:\n• Portfolio analytics (EDA)\n• Individual risk predictions & SHAP\n• Model metrics and threshold radar\n• Explainable rule finder & filters", width_chars=40, fontsize=8)
     
     # Runtime Stage 2: Copilot Agent
     draw_card(ax, 52, 18, 38, 26, "Runtime: RiskLens Copilot", ACCENT_CYAN)
-    draw_wrapped_text(ax, 54, 37, "NL-to-SQL Engine:\n• SQLite DB (100k records + predictions)\n• Groq LLaMA 3.3 API Connector\n• Validation checks (SELECT keyword filters)\n• LangChain BufferWindowMemory (k=5)", width_chars=42, fontsize=8)
+    draw_wrapped_text(ax, 54, 37, "NL-to-SQL Analytics Agent:\n• Embedded SQLite database\n• LLaMA-based natural language parser\n• Built-in SQL validation checks\n• Context-aware conversation memory", width_chars=42, fontsize=8)
 
     pdf.savefig(fig, facecolor=BG_COLOR)
     plt.close()
@@ -214,23 +212,23 @@ with PdfPages(pdf_path) as pdf:
     # Stats columns
     draw_card(ax, 5, 52, 42, 30, "Model Metrics Report", ACCENT_CYAN)
     metrics_text = (
-        "• ROC-AUC Score: 0.7683\n"
-        "• PR-AUC Score:  0.2591 (3.2x over random baseline)\n"
-        "• F1 Score:      0.3202\n"
+        "• ROC-AUC Score: 0.7683 (Robust separation)\n"
+        "• PR-AUC Score:  0.2591 (3.2x random baseline)\n"
+        "• F1 Score:      0.3202 (Optimized for minority)\n"
         "• Calibrated Threshold: 0.6815\n"
-        "• Overall Validation Accuracy: 86.0%"
+        "• Validation Accuracy: 86.0%"
     )
     draw_wrapped_text(ax, 7, 74, metrics_text, width_chars=45, fontsize=8.5)
             
     # Class imbalance explanation
     draw_card(ax, 5, 12, 42, 34, "Class Imbalance Strategy", ACCENT_CYAN)
     imbalance_text = (
-        "• The Challenge:\n"
-        "  Severe skewness (~92% repaid, ~8% defaulted). A naive model achieves 92% accuracy by approving everyone.\n\n"
-        "• scale_pos_weight Penalty:\n"
-        "  Loss function penalizes missed defaults ~11.3x more heavily.\n\n"
-        "• F1-Optimal Thresholding:\n"
-        "  Precision-recall curve search anchors classification at score >= 0.6815 to maximize minority-class F1."
+        "• Skewed Dataset:\n"
+        "  ~92% repaid, ~8% defaulted. Standard accuracy is deceptive.\n\n"
+        "• scale_pos_weight Tuning:\n"
+        "  Penalizes missed defaults 11.3x more heavily than false positives.\n\n"
+        "• Custom Classification Threshold:\n"
+        "  Set at score >= 0.6815 to maximize minority-class F1-score."
     )
     draw_wrapped_text(ax, 7, 39, imbalance_text, width_chars=48, fontsize=8)
             
@@ -264,34 +262,31 @@ with PdfPages(pdf_path) as pdf:
     # Column 1: Explainability
     draw_card(ax, 5, 12, 42, 70, "SHAP Local & Global Explanations", ACCENT_CYAN)
     xai_text = (
-        "• True Transparency:\n"
-        "  RiskLens uses shap.TreeExplainer to compute exact Shapley attribution values for applicant features.\n\n"
-        "• Local Risk Shift:\n"
-        "  Attributions show how each feature pushes individual probability higher (red, increases risk) or lower (green, reduces risk) relative to the dataset expected base probability.\n\n"
-        "• Top Global Features:\n"
-        "  1. External Credit Score 2 (EXT_SOURCE_2)\n"
-        "  2. External Credit Score 3 (EXT_SOURCE_3)\n"
-        "  3. Avg External Score (EXT_SOURCE_MEAN)\n"
-        "  4. Age (AGE_YEARS)\n"
-        "  5. Leverage Ratio (CREDIT_INCOME_RATIO)"
+        "• Local & Global SHAP Values:\n"
+        "  Uses shap.TreeExplainer for exact risk contributions.\n\n"
+        "• Individual Risk Shift:\n"
+        "  Highlights features that increase risk (red) or reduce risk (green) relative to the base average.\n\n"
+        "• Top Influential Features:\n"
+        "  1. External Credit Scores (EXT_SOURCE_2/3)\n"
+        "  2. Age (AGE_YEARS)\n"
+        "  3. Leverage (CREDIT_INCOME_RATIO)"
     )
     draw_wrapped_text(ax, 7, 74, xai_text, width_chars=48, fontsize=8)
             
     # Column 2: Rules Engine
     draw_card(ax, 51, 12, 44, 70, "Surrogate Rule Derivation", ACCENT_GREEN)
     rules_text = (
-        "• Method:\n"
-        "  Trains a shallow DecisionTree (max depth=4) on LightGBM binarized targets to model the complex model's boundary.\n\n"
+        "• Model Approximation:\n"
+        "  Shallow decision tree models the LightGBM decision boundary.\n\n"
         "• Key Metrics:\n"
-        "  - Extracted Rules: 16 human-readable paths\n"
-        "  - Surrogate Fidelity: 85.73% agreement rate\n\n"
-        "• Calibrated Band Rules:\n"
-        "  Assigns leaves to Low, Medium, and High bands based on average leaf default probability (optimal thresholds).\n\n"
-        "• Sample Rule Output (Medium Risk):\n"
-        "  IF External Credit Score 2 <= 0.4305\n"
-        "  AND External Credit Score 3 > 0.31\n"
-        "  AND Employment Duration > 4.5 years\n"
-        "  --> RISK BAND: Medium  (Confidence: 58.9%, Support: 4.4%)"
+        "  - 16 human-readable rules\n"
+        "  - 85.73% surrogate fidelity (agreement rate)\n\n"
+        "• Calibrated Risk Bands:\n"
+        "  Low, Medium, High risk bands derived from leaf nodes.\n\n"
+        "• Sample Decision Rule:\n"
+        "  IF Credit Score 2 <= 0.4305 AND Credit Score 3 > 0.31\n"
+        "  AND Employed > 4.5 years\n"
+        "  --> RISK BAND: Medium (58.9% Confidence)"
     )
     draw_wrapped_text(ax, 53, 74, rules_text, width_chars=50, fontsize=8)
 
@@ -307,210 +302,31 @@ with PdfPages(pdf_path) as pdf:
     # Left Column: Features
     draw_card(ax, 5, 12, 42, 70, "Copilot Agent Core Capabilities", ACCENT_CYAN)
     copilot_text = (
-        "• Zero-Code Data Access:\n"
-        "  Translates natural language questions into executable SQL queries, runs them against SQLite, and summarizes output.\n\n"
-        "• Multi-Turn Memory Context:\n"
-        "  Utilizes LangChain ConversationBufferWindowMemory (k=5) to retain query sequence for subsequent follow-up tasks.\n\n"
-        "• Schema-Anchored Safeguards:\n"
-        "  Injects DDL and standard category values inside prompts to block column hallucination.\n\n"
-        "• Two-Layer Injection Defenses:\n"
-        "  - Validates query structure (forces SELECT statements only).\n"
-        "  - Blocks destructive commands (DROP, DELETE, UPDATE, ALTER, etc.).\n"
-        "  - Caps output fetching to 100 records to prevent memory overflow."
+        "• Natural Language to SQL:\n"
+        "  Converts user queries to SQLite code and runs them instantly.\n\n"
+        "• Contextual Memory:\n"
+        "  Remembers previous questions (memory depth k=5).\n\n"
+        "• Guardrails & Security:\n"
+        "  - Restricts access to read-only SELECT commands.\n"
+        "  - Blocks destructive updates (DROP/DELETE).\n"
+        "  - Caps response payloads to 100 rows."
     )
     draw_wrapped_text(ax, 7, 74, copilot_text, width_chars=48, fontsize=8)
             
     # Right Column: Query Patterns
     draw_card(ax, 51, 12, 44, 70, "Verified Query Patterns & Examples", ACCENT_CYAN)
     patterns_text = (
-        "✔ Query Pattern 1: Aggregates by Class\n"
-        "  * 'What is the average income of applicants who defaulted?'\n"
-        "  * SQL: SELECT AVG(AMT_INCOME_TOTAL) FROM applications WHERE TARGET=1\n\n"
-        "✔ Query Pattern 2: Categorical Default Rates\n"
-        "  * 'Show default rate by education type'\n"
-        "  * SQL: SELECT NAME_EDUCATION_TYPE, AVG(TARGET)*100 FROM applications...\n\n"
-        "✔ Query Pattern 3: Filter & Count Queries\n"
-        "  * 'How many female applicants have more than 2 children?'\n"
-        "  * SQL: SELECT COUNT(*) FROM applications WHERE CODE_GENDER='F'...\n\n"
-        "✔ Query Pattern 4: Top-N Leaders\n"
-        "  * 'What are the top 10 highest credit amounts?'\n"
-        "  * SQL: SELECT AMT_CREDIT FROM applications ORDER BY AMT_CREDIT DESC...\n\n"
-        "✔ Query Pattern 5: Multi-band comparisons\n"
-        "  * 'Show average external credit score by risk band'\n"
-        "  * SQL: SELECT RISK_BAND, AVG(EXT_SOURCE_MEAN) FROM applications..."
+        "✔ Aggregations & Metrics:\n"
+        "  - 'What is the average income of defaulted applicants?'\n"
+        "  - SQL: SELECT AVG(AMT_INCOME_TOTAL) FROM app WHERE TARGET=1\n\n"
+        "✔ Grouped Rates:\n"
+        "  - 'Show default rate by education level'\n"
+        "  - SQL: SELECT education, AVG(TARGET) FROM app GROUP BY education\n\n"
+        "✔ Filters & Counts:\n"
+        "  - 'Find count of female applicants with >2 children'\n"
+        "  - SQL: SELECT COUNT(*) FROM app WHERE gender='F' AND children > 2"
     )
-    draw_wrapped_text(ax, 53, 74, patterns_text, width_chars=50, fontsize=7.5)
-
-    pdf.savefig(fig, facecolor=BG_COLOR)
-    plt.close()
-
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    # SLIDE 7: Visual UI Output Mockup
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    fig, ax = plt.subplots(figsize=(11, 8.5))
-    apply_slide_theme(fig, ax, "Interactive Business UI Preview")
-    
-    # Sidebar
-    draw_card(ax, 4, 12, 22, 70, "Sidebar Panel", ACCENT_CYAN)
-    ax.text(6, 68, "RiskLens v2.0", fontsize=10, color=ACCENT_CYAN, fontweight='bold')
-    ax.text(6, 65, "Enterprise Edition", fontsize=7, color='#64748B')
-    
-    # Sidebar Metrics
-    ax.text(6, 52, "ROC-AUC: 0.7683", fontsize=8, color=TITLE_COLOR, fontweight='bold')
-    ax.text(6, 45, "PR-AUC:  0.2591", fontsize=8, color=TITLE_COLOR, fontweight='bold')
-    ax.text(6, 38, "F1 Score: 0.3202", fontsize=8, color=TITLE_COLOR, fontweight='bold')
-    
-    # Status Lights
-    ax.text(6, 25, "● ML Model: Loaded", fontsize=8, color=ACCENT_GREEN)
-    ax.text(6, 20, "● Database: Connected", fontsize=8, color=ACCENT_GREEN)
-    ax.text(6, 15, "● Copilot: Connected", fontsize=8, color=ACCENT_GREEN)
-
-    # Main area
-    draw_card(ax, 29, 12, 66, 70, "Interactive Workspace Tabs", ACCENT_CYAN)
-    
-    # Tabs
-    ax.text(31, 74, "📊 EDA Dashboard  |  🔍 Risk Predictor  |  🧠 Explainability  |  📋 Decision Rules  |  💬 RiskLens Copilot", 
-            fontsize=8.5, color=ACCENT_CYAN, fontweight='bold')
-            
-    # Mocking tabs content
-    # Card 1: Total applicants
-    draw_card(ax, 31, 52, 14, 15, "Applicants", ACCENT_CYAN)
-    ax.text(33, 56, "100,000", fontsize=12, color=TITLE_COLOR, fontweight='bold')
-    
-    # Card 2: Default rate
-    draw_card(ax, 47, 52, 14, 15, "Default Rate", ACCENT_RED)
-    ax.text(49, 56, "8.09%", fontsize=12, color=ACCENT_RED, fontweight='bold')
-    
-    # Card 3: Avg Credit
-    draw_card(ax, 63, 52, 14, 15, "Avg Credit", ACCENT_CYAN)
-    ax.text(65, 56, "₹5.99L", fontsize=12, color=TITLE_COLOR, fontweight='bold')
-
-    # Card 4: Avg Income
-    draw_card(ax, 79, 52, 14, 15, "Avg Income", ACCENT_GREEN)
-    ax.text(81, 56, "₹1.68L", fontsize=12, color=ACCENT_GREEN, fontweight='bold')
-    
-    # Subplot for bar chart showing portfolio bands
-    bar_ax = fig.add_axes([0.33, 0.18, 0.58, 0.28])
-    bar_ax.patch.set_facecolor(CARD_BG)
-    bar_ax.set_facecolor(CARD_BG)
-    
-    bands = ['Low Risk', 'Medium Risk', 'High Risk']
-    shares = [40.0, 35.0, 25.0]
-    bar_colors = [ACCENT_GREEN, ACCENT_PURPLE, ACCENT_RED]
-    
-    bars = bar_ax.bar(bands, shares, color=bar_colors, width=0.45)
-    bar_ax.set_ylabel('Portfolio Share (%)', color=TEXT_COLOR, fontsize=8)
-    bar_ax.tick_params(colors=TEXT_COLOR, labelsize=8)
-    bar_ax.set_title('Portfolio Distribution by Calibrated Risk Bands', color=TITLE_COLOR, fontsize=9, fontweight='bold')
-    bar_ax.grid(axis='y', color='#ffffff', alpha=0.05, linestyle='--')
-    
-    # Value labels on top of bars
-    for bar in bars:
-        yval = bar.get_height()
-        bar_ax.text(bar.get_x() + bar.get_width()/2.0, yval + 1, f"{yval:.1f}%", 
-                    ha='center', va='bottom', color=TITLE_COLOR, fontsize=8, fontweight='bold')
-
-    pdf.savefig(fig, facecolor=BG_COLOR)
-    plt.close()
-
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    # SLIDE 8: Chatbot Screen Mockup (RiskLens Copilot)
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    fig, ax = plt.subplots(figsize=(11, 8.5))
-    apply_slide_theme(fig, ax, "RiskLens Copilot Chat Interface")
-    
-    # Sidebar
-    draw_card(ax, 4, 12, 22, 70, "Sidebar Panel", ACCENT_CYAN)
-    ax.text(6, 68, "RiskLens v2.0", fontsize=10, color=ACCENT_CYAN, fontweight='bold')
-    ax.text(6, 65, "Enterprise Edition", fontsize=7, color='#64748B')
-    ax.text(6, 52, "ROC-AUC: 0.7683", fontsize=8, color=TITLE_COLOR, fontweight='bold')
-    ax.text(6, 45, "PR-AUC:  0.2591", fontsize=8, color=TITLE_COLOR, fontweight='bold')
-    ax.text(6, 38, "F1 Score: 0.3202", fontsize=8, color=TITLE_COLOR, fontweight='bold')
-    ax.text(6, 25, "● ML Model: Loaded", fontsize=8, color=ACCENT_GREEN)
-    ax.text(6, 20, "● Database: Connected", fontsize=8, color=ACCENT_GREEN)
-    ax.text(6, 15, "● Copilot: Connected", fontsize=8, color=ACCENT_GREEN)
-
-    # Main Workspace
-    draw_card(ax, 29, 12, 66, 70, "Interactive Workspace Tabs", ACCENT_CYAN)
-    ax.text(31, 74, "📊 EDA Dashboard  |  🔍 Risk Predictor  |  🧠 Explainability  |  📋 Decision Rules  |  💬 RiskLens Copilot", 
-            fontsize=8.5, color='#475569', fontfamily='sans-serif')
-    # Draw Cyan underline for the active tab (Copilot)
-    ax.plot([78, 92], [72, 72], color=ACCENT_CYAN, linewidth=2)
-    
-    # User Chat Bubble
-    draw_card(ax, 32, 53, 60, 14, "", ACCENT_CYAN)
-    ax.text(34, 63, "User Question:", fontsize=8, color=ACCENT_CYAN, fontweight='bold')
-    ax.text(34, 60, '"What percentage of pensioners defaulted, and what is their average income?"', 
-            fontsize=9.5, color=TITLE_COLOR, fontweight='medium', fontstyle='italic')
-            
-    # Bot Chat Bubble
-    draw_card(ax, 32, 16, 60, 33, "", ACCENT_GREEN)
-    ax.text(34, 45, "RiskLens Copilot Response:", fontsize=8, color=ACCENT_GREEN, fontweight='bold')
-    
-    bot_explanation = "Based on SQLite database analysis, Pensioners have a default rate of 5.14%."
-    ax.text(34, 42, bot_explanation, fontsize=8.5, color=TITLE_COLOR)
-    
-    # SQL expander mockup
-    draw_card(ax, 34, 31, 56, 7, "", '#1F2937')
-    ax.text(36, 35, "Executed SQL:", fontsize=7, color='#64748B')
-    ax.text(36, 33, "SELECT AVG(TARGET)*100, AVG(AMT_INCOME_TOTAL) FROM applications WHERE NAME_INCOME_TYPE = 'Pensioner'", 
-            fontsize=7, color=ACCENT_CYAN, fontfamily='monospace')
-            
-    # Result table mockup
-    ax.text(34, 26, "QueryResult Table:", fontsize=8, color='#64748B', fontweight='bold')
-    ax.text(34, 22, "NAME_INCOME_TYPE    |  DEFAULT_RATE (%)  |  AVG_INCOME", fontsize=7.5, color=TITLE_COLOR, fontfamily='monospace')
-    ax.plot([34, 88], [20.5, 20.5], color='#1F2937', linewidth=0.8)
-    ax.text(34, 18, "Pensioner           |  5.14%             |  ₹1.37L", fontsize=7.5, color=TEXT_COLOR, fontfamily='monospace')
-
-    pdf.savefig(fig, facecolor=BG_COLOR)
-    plt.close()
-
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    # SLIDE 9: Decision Rules Screen Mockup (Rules Explorer)
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    fig, ax = plt.subplots(figsize=(11, 8.5))
-    apply_slide_theme(fig, ax, "Decision Rules Explorer")
-    
-    # Sidebar
-    draw_card(ax, 4, 12, 22, 70, "Sidebar Panel", ACCENT_CYAN)
-    ax.text(6, 68, "RiskLens v2.0", fontsize=10, color=ACCENT_CYAN, fontweight='bold')
-    ax.text(6, 65, "Enterprise Edition", fontsize=7, color='#64748B')
-    ax.text(6, 52, "ROC-AUC: 0.7683", fontsize=8, color=TITLE_COLOR, fontweight='bold')
-    ax.text(6, 45, "PR-AUC:  0.2591", fontsize=8, color=TITLE_COLOR, fontweight='bold')
-    ax.text(6, 38, "F1 Score: 0.3202", fontsize=8, color=TITLE_COLOR, fontweight='bold')
-    ax.text(6, 25, "● ML Model: Loaded", fontsize=8, color=ACCENT_GREEN)
-    ax.text(6, 20, "● Database: Connected", fontsize=8, color=ACCENT_GREEN)
-    ax.text(6, 15, "● Copilot: Connected", fontsize=8, color=ACCENT_GREEN)
-
-    # Main Workspace
-    draw_card(ax, 29, 12, 66, 70, "Interactive Workspace Tabs", ACCENT_CYAN)
-    ax.text(31, 74, "📊 EDA Dashboard  |  🔍 Risk Predictor  |  🧠 Explainability  |  📋 Decision Rules  |  💬 RiskLens Copilot", 
-            fontsize=8.5, color='#475569', fontfamily='sans-serif')
-    # Draw Cyan underline for the active tab (Decision Rules)
-    ax.plot([60, 74], [72, 72], color=ACCENT_CYAN, linewidth=2)
-    
-    # Filter Panel Mockup
-    draw_card(ax, 32, 54, 60, 13, "Rules Filtering Configuration", ACCENT_CYAN)
-    ax.text(34, 60, "Filter by Risk Band: [Medium]   |   Min Support: [2.00%]   |   Sort by: [Confidence]", fontsize=8, color=TEXT_COLOR)
-    
-    # Rule Card 1 (Medium Risk)
-    draw_card(ax, 32, 34, 60, 16, "Rule #5 (Risk Band: Medium)", ACCENT_PURPLE)
-    rule5_text = (
-        "IF External Credit Score 2 <= 0.4305\n"
-        "AND External Credit Score 3 > 0.3100\n"
-        "AND Employment Duration > 4.5 years\n"
-        "--> PREDICTED BAND: Medium Risk (Confidence: 58.9%, Support: 4.4%)"
-    )
-    draw_wrapped_text(ax, 34, 43, rule5_text, width_chars=70, fontsize=7.5, color=TEXT_COLOR)
-
-    # Rule Card 2 (High Risk)
-    draw_card(ax, 32, 16, 60, 14, "Rule #2 (Risk Band: High)", ACCENT_RED)
-    rule2_text = (
-        "IF External Credit Score 2 <= 0.3200\n"
-        "AND External Credit Score 3 <= 0.2800\n"
-        "--> PREDICTED BAND: High Risk (Confidence: 78.4%, Support: 3.1%)"
-    )
-    draw_wrapped_text(ax, 34, 23, rule2_text, width_chars=70, fontsize=7.5, color=TEXT_COLOR)
+    draw_wrapped_text(ax, 53, 74, patterns_text, width_chars=50, fontsize=8)
 
     pdf.savefig(fig, facecolor=BG_COLOR)
     plt.close()
